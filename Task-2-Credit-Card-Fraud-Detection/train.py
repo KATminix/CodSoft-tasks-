@@ -17,12 +17,27 @@ MODEL_FILE = ROOT / "models" / "fraud_detector.joblib"
 REPORT_DIR = ROOT / "reports"
 
 
+def keep_labeled_rows(frame, split_name):
+    """Drop rows without a valid binary label before feature generation."""
+    labels = pd.to_numeric(frame["is_fraud"], errors="coerce")
+    valid = labels.isin((0, 1))
+    skipped = int((~valid).sum())
+    if skipped:
+        print(f"Skipping {skipped} {split_name} row(s) with missing or invalid is_fraud labels.")
+
+    labeled = frame.loc[valid].copy()
+    labeled["is_fraud"] = labels.loc[valid].astype("int8")
+    if labeled.empty:
+        raise ValueError(f"No valid is_fraud labels found in {split_name} data.")
+    return labeled
+
+
 def main():
     if not TRAIN_FILE.exists() or not TEST_FILE.exists():
         raise FileNotFoundError("Put fraudTrain.csv and fraudTest.csv in the data/ directory.")
 
-    train = pd.read_csv(TRAIN_FILE)
-    test = pd.read_csv(TEST_FILE)
+    train = keep_labeled_rows(pd.read_csv(TRAIN_FILE), "training")
+    test = keep_labeled_rows(pd.read_csv(TEST_FILE), "test")
     X = make_features(train)
     Xt = make_features(test)
     y = train["is_fraud"].astype("int8")

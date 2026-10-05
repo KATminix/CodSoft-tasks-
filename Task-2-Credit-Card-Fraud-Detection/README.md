@@ -30,7 +30,7 @@ fraudTrain.csv
 fraudTest.csv
 ```
 
-These large CSV files are stored with Git LFS.
+These large CSV files are stored with Git LFS. Training and evaluation skip rows whose `is_fraud` label is missing or is not 0 or 1.
 
 ## Installation
 
@@ -74,11 +74,11 @@ The included trained model was evaluated on the provided held-out `fraudTest.csv
 | Metric | Score |
 |---|---:|
 | Accuracy | 99.84% |
-| Precision | 89.56% |
-| Recall | 66.81% |
-| F1-score | 76.53% |
-| ROC-AUC | 99.12% |
-| PR-AUC | 79.52% |
+| Precision | 87.97% |
+| Recall | 67.51% |
+| F1-score | 76.39% |
+| ROC-AUC | 98.88% |
+| PR-AUC | 78.91% |
 
 The test set contains a much smaller fraud proportion than legitimate transactions, which is why accuracy alone is not an adequate measure of performance.
 

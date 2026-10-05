@@ -36,6 +36,8 @@ if __name__ == "__main__":
     p.add_argument("--merch-long", dest="merch_long", type=float, default=-82.048315)
     args = vars(p.parse_args())
     args["trans_date_trans_time"] = args.pop("date")
+
+    args["amt"] = args.pop("amount")
     probability, fraud = predict(args)
     print(f"Fraud probability: {probability:.2%}")
     print("Prediction: FRAUD" if fraud else "Prediction: LEGITIMATE")
