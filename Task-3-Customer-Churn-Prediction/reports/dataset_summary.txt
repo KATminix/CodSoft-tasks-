@@ -1,0 +1,5 @@
+Rows: 10,000
+Columns: 14
+Churned: 2,037 (20.37%)
+Non-churned: 7,963 (79.63%)
+Train/Validation/Test: 7,000/1,500/1,500
