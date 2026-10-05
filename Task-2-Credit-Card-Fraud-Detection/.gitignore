@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+env/
+.DS_Store
+.ipynb_checkpoints/
+# The raw CodSoft CSVs are large (~500 MB total) and should not be committed.
+data/*.csv
