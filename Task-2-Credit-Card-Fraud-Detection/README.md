@@ -23,14 +23,14 @@ Raw names, street text and transaction IDs are not used as predictive features.
 
 ## Dataset
 
-Place these files in `data/`:
+The dataset files are included in `data/`:
 
 ```text
 fraudTrain.csv
 fraudTest.csv
 ```
 
-The original dataset is not included in this repository because the CSV files are very large.
+These large CSV files are stored with Git LFS.
 
 ## Installation
 
